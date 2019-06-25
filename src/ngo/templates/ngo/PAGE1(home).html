@@ -1,0 +1,47 @@
+<html>
+{% load static %}
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'ngo/css/1.css' %}">
+<style media="screen">
+  body{
+
+  }
+</style>
+</head>
+
+
+<body>
+
+<div class="center_div">
+
+      <a style="position:absolute; left:70; top:240" href="{% url 'ngo:view' %}" class="crisis">
+      <div class="polaroid" >
+      <img src="{% static 'ngo/css/flood.jpeg' %}" alt="Norway" id="image" >
+      <div class="container">
+      <p>KERALA FLOODS</p>
+      </div>
+      </div>
+      </a>
+
+      <!-- <a style="position:absolute; left:540; top:240" href="PAGE2(crisis).html" class="crisis">
+      <div class="polaroid" >
+      <img src="1.png" alt="Norway" id="image" >
+      <div class="container">
+      <p>KERALA FLOODS</p>
+      </div>
+      </div>
+      </a>
+
+      <a style="position:absolute; left:970; top:240" href="PAGE2(crisis).html" class="crisis">
+      <div class="polaroid" >
+      <img src="1.png" alt="Norway" id="image" >
+      <div class="container">
+      <p>KERALA FLOODS</p>
+      </div>
+      </div>
+      </a> -->
+</div>
+
+</body>
+</html>

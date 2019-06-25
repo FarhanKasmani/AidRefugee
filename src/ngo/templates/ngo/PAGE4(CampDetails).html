@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+	<title></title>
+	<link rel="stylesheet" href="{% static 'ngo/css/2.css' %}">
+	<link rel="stylesheet" href="{% static 'ngo/css/navbar.css' %}">
+
+</head>
+
+<body>
+	{% if request.user.ngo %}
+	{% include 'ngo/snippets/sidenav.html' %}
+	{% else %}
+	{% include 'base/css.html' %}
+	{% include 'base/navbar.html' %}
+	{% endif %}
+	<div class="row">
+
+  <div class="column" id="map" class="centered">
+
+  </div>
+</div>
+	{% if not request.user.ngo %}
+	{% include 'base/js.html' %}
+	{% endif %}
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'ngo/js/camps_maps.js' %}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_xNH5wglimHCE7hFYjYDJzp7uy0zuQ0&callback=initMap" async defer></script>
+	<script type="text/javascript" src="{% static 'js/csrf.ajax.js' %}"></script>
+
+</body>
+</html>

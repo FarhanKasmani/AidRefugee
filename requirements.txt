@@ -1,0 +1,16 @@
+certifi==2018.8.24
+chardet==3.0.4
+Click==7.0
+Django==1.11.4
+face-recognition==1.2.3
+face-recognition-models==0.3.0
+idna==2.7
+numpy==1.15.2
+Pillow==5.3.0
+PyJWT==1.6.4
+PySocks==1.6.8
+pytz==2018.5
+requests==2.19.1
+six==1.11.0
+twilio==6.18.1
+urllib3==1.23

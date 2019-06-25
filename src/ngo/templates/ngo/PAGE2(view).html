@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+	<title></title>
+	<link rel="stylesheet" href="{% static 'ngo/css/2.css' %}">
+	<link rel="stylesheet" href="{% static 'ngo/css/navbar.css' %}">
+	<!-- <link rel="stylesheet" href="{% static 'css/home_maps.css' %}"> -->
+</head>
+
+<body>
+	{% include 'ngo/snippets/sidenav.html' %}
+	<div class="row">
+
+  <div class="column" id="map" class="centered">
+
+  </div>
+
+  <div class="column" id="list" class="row">
+
+
+    <div id="demo">
+ <!--    	<img src="1.png" id="profilepic" class="column" name="profilepic">
+      <div id="demo"></div> -->
+
+      </div>
+
+
+<script type="text/javascript">
+  var txt='';
+  var person=[{
+    firstName:"john",
+    lastName:"doe",age:"46"
+  },
+    {firstName:"john",
+    lastName:"doe",age:"46"
+  },
+    {firstName:"john",
+    lastName:"doe",age:"46"
+  }];
+  for(i=0;i<person.length;i++){
+  txt+='<div class="tab"><img id="profilepic" class="column" name="profilepic"><br><b>'+person[i].firstName+'</b><br><b>'+person[i].lastName+'</b><br>'+person[i].age+'</div>';
+  }
+  document.getElementById("demo").innerHTML=txt
+</script>
+
+  </div>
+</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'ngo/js/refugeesMaps.js' %}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+	<script type="text/javascript" src="{% static 'js/csrf.ajax.js' %}"></script>
+
+</body>
+</html>

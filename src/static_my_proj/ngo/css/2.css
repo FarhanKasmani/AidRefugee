@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#map{
+	margin-top: 50px;
+	margin-right: 20px;
+	margin-left: 230px;
+	width:600px;
+	height: 600px;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#list{
+
+	height: 600px;
+	width: 400px;
+	overflow-y: auto;
+	margin-right: 20px;
+	margin-top: 50px;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding:20px;
+    border-radius: 8px;
+}
+
+#profilepic{
+	width:100px;
+	height:100px;
+}
+
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.tab
+{
+	width: 340px;
+	height:100px;
+	background-color: #F8F8F8;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+#data{
+	margin-top: 10px;
+	margin-left: 120px;
+	padding-top: 10px;
+}

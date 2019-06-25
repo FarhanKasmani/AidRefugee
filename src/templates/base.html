@@ -1,0 +1,18 @@
+{% url 'login' as login_url %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, world!</title>
+    {% include 'base/css.html' %}
+    {% block customcss %}{% endblock %}
+  </head>
+  <body>
+    {% if request.path != login_url %}
+      {% include 'base/navbar.html' %}
+    {% endif %}
+    {% block content %}{% endblock %}
+    {% include 'base/js.html' %}
+  </body>
+</html>

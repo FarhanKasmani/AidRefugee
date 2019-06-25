@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="container my-3 ">
+    <div class="row">
+      <div class="col-12">
+        <form class="form-inline" method="GET" action='{% url "users:list" %}'>
+          <input class="form-control col-9" type="search" placeholder="Search" name='q' aria-label="Search">
+          <button class="btn btn-outline-success col-3" type="submit">Search</button>
+        </form>
+      </div>
+      {% if request.GET.q %}
+        <div class="col-12">
+          Results for <b>{{ request.GET.q }}</b>
+          <hr/>
+        </div>
+      {% endif %}
+    </div>
+    {% for obj in object_list %}
+      <table class="table table-block">
+        <tbody>
+          <tr>
+            <td scope="row">
+              <div class="row">
+                <div class="col-12">
+                  <img src="{{ obj.profile_photo.url }}" alt="" class="img-thumbnail">
+                </div>
+                <div class="col">
+                  <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class='card-title'><a href="{% url 'users:details' slug=obj.slug %}">{{ obj.full_name }} </a></h5>
+                        <footer class="blockquote-footer">{{ obj.mobile_no }}</footer>
+                        <footer class="blockquote-footer"></footer>
+                        <div class="addMember">
+                          <button type="submit" class="btn btn-outline-secondary col-12">Add</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    {% endfor %}
+  </div>
+{% endblock %}

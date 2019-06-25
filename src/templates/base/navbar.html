@@ -1,0 +1,43 @@
+{% url 'home' as home_url %}
+{% url 'users:list' as list_url %}
+{% url 'users:familyMap' as family_url %}
+{% url 'users:camps' as camps_url %}
+{% url 'lost:find' as find_url %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Welcome</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item {% if request.path == home_url %}active{% endif %}">
+          <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item {% if request.path == list_url %}active{% endif %}">
+          <a class="nav-link" href="{% url 'users:list' %}">Add Members<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item {% if request.path == family_url %}active{% endif %}">
+          <a class="nav-link" href="{% url 'users:familyMap' %}">Search Family<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item {% if request.path == camps_url %}active{% endif %}">
+          <a class="nav-link" href="{% url 'users:camps' %}">Donate<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item {% if request.path == find_url %}active{% endif %}">
+          <a class="nav-link" href="{% url 'lost:find' %}">Find Lost Friend<span class="sr-only">(current)</span></a>
+        </li>
+        {% if request.user.is_authenticated %}
+            <li class="nav-item {% if request.path == logout_url %}active{% endif %}">
+              <a class="nav-link" href="{{ logout_url }}">Logout</a>
+            </li>
+        {% else %}
+            <li class="nav-item {% if request.path == login_url %}active{% endif %}">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

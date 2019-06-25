@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <div class="container">
+    <form class="upload" action="{% url 'lost:find' %}" method="post" upload_to = 'img'>{% csrf_token %}
+      Upload Image
+      <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" name="photo" />
+      <input type="submit" name="" value="Upload">
+    </form>
+  </div>
+
+{% endblock %}

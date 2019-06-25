@@ -1,0 +1,173 @@
+<html>
+{% load static %}
+<head>
+	<link rel="stylesheet" href="{% static 'ngo/css/2.css' %}">
+    <link rel="stylesheet" href="{% static 'ngo/css/3.css' %}">
+	  <link rel="stylesheet" href="{% static 'ngo/css/navbar.css' %}">
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/csrf.ajax.js' %}"></script>
+<script type="text/javascript">
+$(function(){
+
+
+	var itemarray=[];
+  var facarray=[];
+
+  $('.addbtn').on('click', function(e){
+		var str=document.getElementById('items').value;
+
+    if (str!='')
+    {
+
+    itemarray.push(str);
+    console.log(itemarray);
+    var label=document.createElement("li");
+    label.setAttribute('class','list-group-item');
+    var labelnode=document.createTextNode(str);
+    label.append(labelnode);
+    var element=document.getElementById('additems');
+    element.append(label);
+    document.getElementById('items').value='';
+    }
+	});
+
+
+
+  $('.addbtn1').on('click', function(e){
+
+    var str=document.getElementById('facility').value;
+
+
+    if (str!='')
+    {
+
+    facarray.push(str);
+    console.log(facarray);
+    var label=document.createElement("li");
+    label.setAttribute('class','list-group-item');
+    var labelnode=document.createTextNode(str);
+    label.append(labelnode);
+    var element=document.getElementById('addfacilities');
+    element.append(label);
+    document.getElementById('facility').value='';
+    }
+
+  });
+
+	$('.myform').on('submit', function(e){
+		e.preventDefault();
+		console.log("Hi");
+		$.ajax({
+	    url: '/ngo/place/',
+	    method: 'POST',
+			data: {
+				'items': JSON.stringify(itemarray),
+				'facs': JSON.stringify(facarray),
+				'name': $('#name').val(),
+				'lat': $('#lat').val(),
+				'lng': $('#lon').val(),
+			},
+	    success: function(data) {
+				window.location.href = "{% url 'ngo:place' %}"
+	    },
+	    error: function(errorData) {
+	      console.log(errorData)
+	    }
+	  });
+	});
+});
+</script>
+
+<body>
+{% include 'ngo/snippets/sidenav.html' %}
+<div class="row">
+
+  <div class="column" id="map" >
+
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR_xNH5wglimHCE7hFYjYDJzp7uy0zuQ0">
+    </script>
+    <script>
+		$(function() {
+      var map = new google.maps.Map(document.getElementById('map'),{
+        center:{
+          lat:19.7514798,
+          lng:75.7138884,
+        },
+        zoom:17
+      });
+			var goldStar = {
+				path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+				fillColor: 'blue',
+				fillOpacity: 0.8,
+				scale: 0.2,
+				strokeColor: 'blue',
+				strokeWeight: 2
+			};
+      var marker=new google.maps.Marker({
+        position:{
+					lat:19.7514798,
+          lng:75.7138884,
+        },
+				icon: goldStar,
+        map:map,
+        draggable:true,
+        });
+
+
+      google.maps.event.addListener(marker,'dragend',function(){
+        var lat=marker.getPosition().lat();
+        var lng=marker.getPosition().lng();
+        console.log(lat,lng);
+
+        document.getElementById("lat").value = lat;
+        document.getElementById("lon").value = lng;
+
+      });
+		})
+
+
+
+
+    </script>
+
+  </div>
+
+  <div class="column" id="list" class="row">
+    <h1>FILL DETAILS</h1>
+      <form action="{% url 'ngo:place' %}" method="post" class="myform"> {% csrf_token %}
+
+        <div class="title"><b>NAME</b></div><br>
+        <input type="text" size="30" id='name'/><br>
+
+        <div class="title"><b>LOCATION</b></div><br>
+        <b>Latitude:</b> <input type="text" id="lat" size="30" /><br><br>
+        <b>Longitude:</b> <input type="text" id="lon" size="30"/><br>
+
+        <div class="title"><b>RESOURCES AVAILABLE<br></b></div>
+        <input id='items' type="text" placeholder="Items">
+        <button type="button" class="addbtn">Add</button>
+        <ul id='additems'>
+
+        </ul><br>
+
+        <div class="title"><b>FACILITIES PROVIDED<br></b></div>
+        <input id='facility' type="text" placeholder="Facility">
+        <button type="button" class="addbtn1">Add</button>
+        <ul id='addfacilities'>
+
+        </ul><br>
+
+        <button type="submit" class="submitbtn myform">SUBMIT</button><br>
+
+      </form>
+
+
+
+
+ </div>
+</div>
+
+</body>
+</html>

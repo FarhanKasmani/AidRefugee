@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+  <link rel="stylesheet" href="{% static 'css/home_maps.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  <div id="map"></div>
+  <script type="text/javascript" src="{% static 'js/familyMap.js' %}"></script>
+
+{% endblock %}
